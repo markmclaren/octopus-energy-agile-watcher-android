@@ -9,6 +9,20 @@ Agile Watcher for Android makes it easier to follow your Octopus Energy Agile el
 
 ---
 
+## 📱 Screenshots
+
+| Agile Prices Dashboard | Best Times Finder | Welcome & Onboarding |
+| :---: | :---: | :---: |
+| ![Agile Prices Dashboard](screenshots/02-dashboard.png) | ![Best Times Finder](screenshots/03-best-times.png) | ![Welcome & Onboarding](screenshots/01-onboarding.png) |
+| **Live rate, Next half hour, Daily average & Earlier Prices toggle** | **1h / 2h / 4h cheapest window finder, Remind Me & 48-bar price chart** | **API key auto-discovery or instant UK region public rate browsing** |
+
+| 30-Day Electric Consumption | Electric Day Detail | 30-Day Gas Consumption |
+| :---: | :---: | :---: |
+| ![30-Day Electric Consumption](screenshots/04-electricity.png) | ![Electric Day Detail](screenshots/05-electricity-day.png) | ![30-Day Gas Consumption](screenshots/06-gas.png) |
+| **30-day & 7-day usage/cost summary, bar chart & partial-day badges** | **48-bar half-hour usage chart & slot-by-slot Agile rate breakdown** | **SMETS2 (`m³`) / SMETS1 (`kWh`) gas tracking & Setup Tariff dialog** |
+
+---
+
 ## ✨ Features
 
 - **Current and upcoming prices:** See the live half-hour rate, the next rate, and prices ahead as Octopus publishes them (typically around 4:00 PM UK time daily). Public Agile rates for all 14 UK DNO regions (`A`–`P`) can also be browsed without an API key.

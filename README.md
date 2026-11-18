@@ -109,6 +109,7 @@ octopus-energy-agile-watcher-android/
 ├── build_with_docker.sh                # One-command Debug APK builder
 ├── build_release_with_docker.sh        # One-command Release APK builder
 ├── local.properties.example            # Template for optional build-time credentials
+├── generate_screenshots.py             # Pillow vector generator for ./screenshots/*.png
 └── test_app_logic.py                   # Unit & live Octopus API verification suite
 ```
 

@@ -36,9 +36,10 @@ You can compile both Debug and Release Android APKs inside an isolated Docker co
 
 ---
 
-## ☁️ Option 2: GitHub Actions Automated CI/CD
+## ☁️ Option 2: GitHub Actions Automated Release
 
-Every push or pull request to `main`/`master` runs `.github/workflows/build.yml`, which:
-1. Executes `python3 test_app_logic.py`
-2. Builds `app-debug.apk` and `app-release.apk`
-3. Uploads both APKs as downloadable GitHub Actions artifacts (and attaches them automatically to GitHub Releases when pushing a `v*` tag).
+When you push a version tag (`v*`, e.g. `git tag v1.0.0 && git push origin v1.0.0`) on the `main` branch, `.github/workflows/build.yml` runs automatically:
+1. Verifies the tagged commit belongs to `main`
+2. Executes `python3 test_app_logic.py`
+3. Builds `app-debug.apk` and `app-release.apk`
+4. Publishes a GitHub Release with both APKs attached.

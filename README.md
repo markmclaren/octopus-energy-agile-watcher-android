@@ -1,41 +1,31 @@
-# ⚡ Octopus Energy Agile Watcher (Android)
+# ⚡ Octopus Energy Agile Watcher for Android
 
-An Android recreation of the iOS **[Octopus Energy Agile Watcher](https://www.robertsammons.com/agile-watcher/)** app ([App Store `id1499880851`](https://apps.apple.com/gb/app/octopus-energy-agile-watcher/id1499880851)), written in **Kotlin** with **Jetpack Compose (Material 3)**, powered by the **[Octopus Energy Kraken REST & GraphQL APIs](https://developer.oegb-kraken.energy/rest/)**, and built with **Docker, Docker Compose, and GitHub Actions** following the zero-SDK architecture of [`markmclaren/tuya-water-heater-app`](https://github.com/markmclaren/tuya-water-heater-app).
+Agile Watcher for Android makes it easier to follow your Octopus Energy Agile electricity prices, find cheaper times to use power, and understand your energy use. Connect with your Octopus API key, check the home and meter details we find, and start watching your rates.
 
-> **Note on Open Source Status:** The original iOS *Octopus Energy Agile Watcher* by Rob Sammons is a proprietary, closed-source commercial iOS/macOS/watchOS app. This repository is a clean-room native Android implementation built from the public Octopus Energy Kraken API documentation and the iOS app's published screenshots and feature specifications.
+> **⚠️ Disclaimer & Non-Affiliation:**
+> This project is an **independent, unofficial open-source Android recreation** inspired by the iOS app **[Octopus Energy Agile Watcher](https://www.robertsammons.com/agile-watcher/)** ([App Store `id1499880851`](https://apps.apple.com/gb/app/octopus-energy-agile-watcher/id1499880851)) created by **Rob Sammons**.
+>
+> **This project and its author are not affiliated with, endorsed by, or connected in any way to Octopus Energy (or Kraken Technologies) or Rob Sammons.** If you use iOS, iPadOS, macOS, or watchOS, please support Rob Sammons' official app on the [Apple App Store](https://apps.apple.com/gb/app/octopus-energy-agile-watcher/id1499880851).
 
 ---
 
-## ✨ Features (Modeled on Agile Watcher v12.0.1 for iOS)
+## ✨ Features
 
-1. **🔑 Onboarding & Automatic Account/Meter Discovery (`OnboardingScreen`)**
-   - Enter only your Octopus API key (`sk_live_...`) and tap **Find my details →** — the app uses the Kraken GraphQL API (`obtainKrakenToken` → `viewer.accounts`) and REST API (`/v1/accounts/{account_number}/`) to automatically discover your home address, Electricity MPAN & meter serial, active Agile tariff & UK DNO region, and optional Gas MPRN, meter serial & tariff.
-   - **No API Key Needed for Live Prices:** You can also skip straight to watching public half-hourly Agile rates for any of the 14 UK GSP regions (`A`–`P`).
+- **Current and upcoming prices:** See the live half-hour rate, the next rate, and prices ahead as Octopus publishes them (typically around 4:00 PM UK time daily). Public Agile rates for all 14 UK DNO regions (`A`–`P`) can also be browsed without an API key.
+- **Best Times:** Find the cheapest consecutive **1 hour**, **2 hours**, or **4 hours** window across Today and Tomorrow, explore the 48-slot half-hour price chart, and set a local Android notification reminder for your chosen window.
+- **Electricity usage:** Explore up to 30 days of daily costs and consumption, with 30-day and daily 48-bar charts and half-hour detail paired with the Agile rate at that time. Partial and missing readings are clearly labelled.
+- **Optional gas usage:** View up to 30 days of gas consumption (`m³` for SMETS2 with standard UK calorific conversion to `kWh`, or `kWh` for SMETS1) and estimated costs. Import your gas tariff from your Octopus account when available, or enter it yourself via **Setup Tariff**.
+- **Android Home Screen Widget:** Keep your current Agile rate, next half-hour rate, and daily average close at hand on your Android Home Screen.
+- **Made for Android (Kotlin & Jetpack Compose):** Supports both Light and Dark appearances (plus System default), high-cost threshold alerts, standing charge inclusion toggle, and 2 or 3 decimal place formatting.
+- **Privacy:** No advertising, tracking, or analytics. The app connects directly to the [Octopus Energy Kraken API](https://developer.oegb-kraken.energy/rest/) (`api.oegb-kraken.energy`) and your account details stay strictly on your device.
 
-2. **⚡ Agile Prices Dashboard (`DashboardScreen`)**
-   - **Hero Current Price Card:** Live half-hour price (`p/kWh`), Next Half Hour price, Average for Day, last-checked timestamp, **↓ Earlier Prices** toggle, and 1-tap Share button.
-   - **Half-Hour Rates List:** Grouped by day (`Sun, Oct 25`, `Mon, Oct 26`) with automatic highlighting for the current slot (magenta-pink), lowest price of the day (green), plunge pricing below `0p/kWh` (cyan bolt `⚡`), and high-cost threshold alerts. Tap any slot to schedule a local reminder or share that slot's rate.
-
-3. **⏱️ Best Times Finder & Price Chart (`BestTimesScreen`)**
-   - Find the cheapest consecutive **1 hour**, **2 hours**, or **4 hours** window across **Today** and **Tomorrow**.
-   - One-tap **🔔 Remind Me** button schedules an Android notification alarm for the start of your chosen window.
-   - Interactive **48-bar Half-Hour Price Chart** (`Today` / `Tomorrow` toggle) with zero-baseline support for negative plunge rates and deep magenta-pink highlighting over the cheapest complete window.
-
-4. **📊 Electricity Consumption — 30-Day Overview & Half-Hour Day Detail (`ConsumptionScreen`)**
-   - **Last 30 Days Hero Card:** Total 30-day cost (`£`) & usage (`kWh`), Last 7 Days summary, Average reported day, standing charge inclusion note, and Share button.
-   - **Usage over 30 days Bar Chart** + **Daily usage** list with automatic labelling for partial readings (`Partial readings · 3 received`) and full days (`Avg. 7.90p/kWh · 48 readings`).
-   - Tap any day to drill down into the **Day Detail View** featuring the **Usage through the day** 48-slot bar chart and individual **Half-hour readings** paired with the exact Agile unit rate (`p/kWh`) and cost (`£`) at that half hour.
-
-5. **🔥 Optional Gas Consumption & Tariff Setup (`ConsumptionScreen` & `GasTariffSetupDialog`)**
-   - View 30 days of gas usage (`m³` for SMETS2 with standard UK calorific conversion `m³ × 1.02264 × 39.5 / 3.6 → kWh`, or `kWh` for SMETS1) and estimated daily/30-day costs.
-   - Built-in **Setup Tariff** dialog inside the Hero card to customize your gas unit rate (`p/kWh`), standing charge (`p/day`), and meter units.
-
-6. **📱 Android Home Screen Widget (`AgileRateWidgetProvider`)**
-   - Displays Current Agile Rate, Next Half-Hour Rate, and Today's Average right on your Android Home Screen.
+*Note: An Octopus Energy account and API key are required for smart meter consumption tracking. Export tariffs are not supported. Availability of gas tariff details depends on your Octopus account. Prices and usage costs shown in the app are estimates; your final bill may differ.*
 
 ---
 
 ## 🛠️ Setup & Zero-SDK Docker Build
+
+Built in **Kotlin** with **Jetpack Compose (Material 3)** using the same zero-SDK Docker, Docker Compose, and GitHub Actions workflow as [`markmclaren/tuya-water-heater-app`](https://github.com/markmclaren/tuya-water-heater-app).
 
 ### Prerequisites
 
@@ -44,10 +34,12 @@ An Android recreation of the iOS **[Octopus Energy Agile Watcher](https://www.ro
 
 ### 1. Optional Build-Time Configuration
 
-You can enter your API key directly inside the app UI on first launch, or optionally pre-populate it at build time via `local.properties` (gitignored):
+You can enter your API key directly inside the app's Welcome / Settings screen on your phone, or optionally pre-populate it at build time via `.env` or `local.properties` (both are gitignored and never committed):
 
 ```bash
 cp local.properties.example local.properties
+# or
+cp .env.example .env
 ```
 
 ### 2. Run Python Logic & Live API Verification Tests
@@ -88,10 +80,10 @@ octopus-energy-agile-watcher-android/
 │   │   ├── AgileReminderReceiver.kt    # AlarmManager notification receiver for Remind Me
 │   │   ├── AgileRateWidgetProvider.kt  # Android Home Screen AppWidgetProvider
 │   │   ├── screens/
-│   │   │   ├── OnboardingScreen.kt     # Welcome & API key auto-discovery (Screenshot 01)
-│   │   │   ├── DashboardScreen.kt      # Current price & half-hour list (Screenshot 02)
-│   │   │   ├── BestTimesScreen.kt      # 1h/2h/4h finder & 48-bar chart (Screenshot 03)
-│   │   │   ├── ConsumptionScreen.kt    # 30-day & Day Detail Electric/Gas (Screenshots 04-06)
+│   │   │   ├── OnboardingScreen.kt     # Welcome & API key auto-discovery
+│   │   │   ├── DashboardScreen.kt      # Current price & half-hour list
+│   │   │   ├── BestTimesScreen.kt      # 1h/2h/4h finder & 48-bar chart
+│   │   │   ├── ConsumptionScreen.kt    # 30-day & Day Detail Electric/Gas
 │   │   │   └── SettingsScreen.kt       # Account, Region, Gas Tariff & Theme preferences
 │   │   └── theme/
 │   │       ├── Color.kt                # Signature Agile Watcher Pink & Light/Dark palettes
@@ -105,3 +97,10 @@ octopus-energy-agile-watcher-android/
 ├── local.properties.example            # Template for optional build-time credentials
 └── test_app_logic.py                   # Unit & live Octopus API verification suite
 ```
+
+---
+
+## 🙏 Credits & Inspiration
+
+- **[Octopus Energy Agile Watcher for iOS](https://www.robertsammons.com/agile-watcher/)** by **Rob Sammons** — The UI layout, workflow, and feature design of this Android app are directly inspired by Rob Sammons' iOS application.
+- **[Octopus Energy Kraken REST & GraphQL APIs](https://developer.oegb-kraken.energy/rest/)** — Public tariff, product, and smart meter consumption APIs provided by Octopus Energy.

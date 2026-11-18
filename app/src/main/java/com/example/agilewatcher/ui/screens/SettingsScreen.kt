@@ -492,7 +492,7 @@ fun SettingsScreen(
 
             // Footer Note
             Text(
-                text = "Agile Watcher for Android v12.0.1 · Powered by Octopus Energy REST & GraphQL APIs (api.oegb-kraken.energy). Your API key and meter details stay strictly on your device.",
+                text = "Agile Watcher for Android v${com.example.agilewatcher.BuildConfig.VERSION_NAME} · Powered by Octopus Energy REST & GraphQL APIs (api.oegb-kraken.energy). Your API key and meter details stay strictly on your device.",
                 fontSize = 12.sp,
                 lineHeight = 17.sp,
                 color = colors.textMuted,

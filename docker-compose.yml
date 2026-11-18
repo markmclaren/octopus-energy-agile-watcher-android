@@ -1,0 +1,12 @@
+services:
+  android-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+      - agile_watcher_gradle_cache:/root/.gradle
+    container_name: agile_watcher_android_builder
+
+volumes:
+  agile_watcher_gradle_cache:

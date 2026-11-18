@@ -1,0 +1,33 @@
+## This file is a TEMPLATE. Copy it to local.properties and fill in your values (optional).
+## local.properties is in .gitignore — never commit it.
+## Note: You can also enter your API key directly in the app's Onboarding / Settings screen!
+
+# Android SDK path (set automatically by Android Studio, or inside Docker)
+# sdk.dir=/Users/yourname/Library/Android/sdk
+
+# ============================================================
+# Octopus Energy API Credentials (Optional Build-Time Defaults)
+# Get your API key from:
+# https://octopus.energy/dashboard/new/accounts/personal-details/api-access
+# ============================================================
+OCTOPUS_API_KEY=
+OCTOPUS_ACCOUNT_NUMBER=
+OCTOPUS_BASE_URL=https://api.oegb-kraken.energy
+
+# ============================================================
+# Default Agile Product & GSP Region (Public rates work without an API key!)
+# Region letters: A (Eastern), B (East Midlands), C (London), D (Merseyside & N Wales),
+# E (West Midlands), F (North Eastern), G (North Western), H (Southern),
+# J (South Eastern), K (South Wales), L (South Western), M (Yorkshire),
+# N (South Scotland), P (North Scotland)
+# ============================================================
+OCTOPUS_DEFAULT_PRODUCT=AGILE-24-10-01
+OCTOPUS_DEFAULT_REGION=C
+
+# ============================================================
+# Optional Meter Details (Auto-discovered when API key is provided)
+# ============================================================
+OCTOPUS_ELECTRIC_MPAN=
+OCTOPUS_ELECTRIC_SERIAL=
+OCTOPUS_GAS_MPRN=
+OCTOPUS_GAS_SERIAL=
